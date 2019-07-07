@@ -9,12 +9,18 @@ namespace Microcomm.Configuration.Apollo
 {
     public class ApolloConfigurationSection:ConfigurationSection
     {
-        [ConfigurationProperty("appId",IsRequired =true)]
-         public string AppId
+        [ConfigurationProperty("appId", IsRequired = true)]
+        public string AppId
         {
-            get { return base["appId"] as string; }
+            get => base["appId"] as string; 
             set => base["appId"] = value;
-            
+        }
+
+        [ConfigurationProperty("namespaces", IsRequired = true)]
+        public IEnumerable<String> Namespaces
+        {
+            get => base["namespaces"].ToString().Split(',');
+            set => base["namespaces"] = value == null ? null : string.Join(",", value);
         }
     }
 }

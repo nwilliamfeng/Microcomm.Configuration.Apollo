@@ -48,7 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApolloConfigurationSection.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="ApolloConfigurationManager.cs" />
+    <Compile Include="ConfigUtilAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
