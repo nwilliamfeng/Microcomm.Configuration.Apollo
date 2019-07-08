@@ -1,8 +1,7 @@
 ﻿using Com.Ctrip.Framework.Apollo;
 using Com.Ctrip.Framework.Apollo.Core;
-using Com.Ctrip.Framework.Apollo.Internals;
 using Com.Ctrip.Framework.Apollo.Util;
-using Com.Ctrip.Framework.Apollo.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,33 +35,32 @@ namespace Microcomm.Configuration.Apollo
             this.RegistEvent();
         }
 
-        
+
         private void RegistEvent()
         {
-            this._config.ConfigChanged +=(s,e)=>
-            {
-                var items=  e.Changes.Values.Select(x => new ConfigChangedItem(x));
-                this.ConfigChanged?.Invoke(this, new ConfigChangedEventArgs(items));
-            };
+            this._config.ConfigChanged += (s, e) =>
+             {
+                 var items = e.Changes.Values.Select(x => new ConfigChangedItem(x));
+                 this.ConfigChanged?.Invoke(this, new ConfigChangedEventArgs(items));
+             };
         }
 
         public event EventHandler<ConfigChangedEventArgs> ConfigChanged;
-     
 
-        public static ApolloConfigManager Current
+
+        public static ApolloConfigManager Current => instance ?? (instance = new ApolloConfigManager());
+
+
+        public string GetConfigValue(string key) => this._config.GetProperty(key, "");
+
+        public T GetJsonConfigValue<T>(string key)
+            where T:class,new() 
         {
-            get
-            {
-                if (instance == null)
-                    instance = new ApolloConfigManager();
-                return instance;
-            }
+            var str = this.GetConfigValue(key);
+            if (string.IsNullOrEmpty(str))
+                return null;
+            return JsonConvert.DeserializeObject<T>(str);
         }
-
-
-        public string GetConfigValue(string key) => this._config.GetProperty(key,"");
-       
-       
-
+ 
     }
 }
