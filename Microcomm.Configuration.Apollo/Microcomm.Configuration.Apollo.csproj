@@ -47,9 +47,11 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApolloConfigurationSection.cs" />
-    <Compile Include="ApolloConfigurationManager.cs" />
-    <Compile Include="ConfigUtilAdapter.cs" />
+    <Compile Include="ApolloConfigManager.cs" />
+    <Compile Include="Configuration\ApolloConfigurationSection.cs" />
+    <Compile Include="ConfigChangedEventArgs.cs" />
+    <Compile Include="ConfigChangeType.cs" />
+    <Compile Include="ConfigChangedItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
