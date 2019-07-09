@@ -12,12 +12,12 @@ namespace Microcomm.Configuration.Apollo.Test
 
         static void Main(string[] args)
         {
-            test.PrintSectionInfo();
+             test.PrintSectionInfo();
             
 
             while (true)
             {
-                Console.WriteLine("Please enter key:");
+               Console.WriteLine("Please enter key(the input format is {key},{namespace} if namespace is application please input only key):");
                 var key = Console.ReadLine();
                 test.PrintConfigValue(key);
                

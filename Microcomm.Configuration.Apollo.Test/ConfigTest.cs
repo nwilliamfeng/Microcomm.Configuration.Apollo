@@ -25,7 +25,8 @@ namespace Microcomm.Configuration.Apollo.Test
         public void PrintConfigValue(string key)
         {
             Console.WriteLine();
-           var value = ApolloConfigManager.Current.GetConfigValue(key);
+            var strs = key.Split(',');
+           var value = ApolloConfigManager.Current.GetConfigValue(strs[0],strs.Length==1?"application":strs[1]);
             Console.WriteLine($"the value of the  key {key} is: {value}");
             Console.WriteLine();
         }
